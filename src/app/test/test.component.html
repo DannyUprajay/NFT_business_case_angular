@@ -1,0 +1,49 @@
+<p>test works!</p>
+
+<div class="container  text-align-center;">
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div *ngFor="let test of tests; let index = index;" class="col">
+      <div>
+      <div class="card text-center pt-3">
+        <div class="card-body">
+          <div>
+            <p>{{test.email}}</p>
+          </div>
+          <div>
+            <h1>{{ test.adress.label }}</h1>
+          </div>
+            <p>Code postal: {{ test.adress.postalCode }}</p>
+            <p>Pays: {{ test.adress.contry }}</p>
+        </div>
+        <div>
+          <h1>Gallery</h1>
+      </div>
+<!--      <p>Nom: {{ test.galleries[0].name }}</p>-->
+<!--      <p>Description: {{ test.galleries[0].description }}</p>-->
+    </div>
+        <button (click)="viewOneUser(test.id)" type="button" class="btn btn-primary m-5" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          Detail
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content text-center">
+      <div class="modal-header">
+        <h1 class="modal-title text-center fs-5" id="exampleModalLabel">{{user?.email}}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+
+      <div class="mb-3">
+        <p>{{user?.firstName}}</p>
+      </div>
+
+    </div>
+  </div>
+</div>
