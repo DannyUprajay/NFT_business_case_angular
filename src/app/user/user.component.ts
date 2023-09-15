@@ -1,18 +1,15 @@
-import {Component, OnInit} from '@angular/core';
-import {Address, Test} from "../test";
-import {TestService} from "../test.service";
+import { Component } from '@angular/core';
+import {UserInterface} from "../user.interface";
 import {FormControl, FormGroup} from "@angular/forms";
-import {NgForm} from "@angular/forms";
-import {result, UserInterface} from "../user.interface";
-import { DatePipe } from '@angular/common';
-import { format } from 'date-fns';
+import {TestService} from "../test.service";
+import {DatePipe} from "@angular/common";
 
 @Component({
-  selector: 'app-test',
-  templateUrl: './test.component.html',
-  styleUrls: ['./test.component.css']
+  selector: 'app-user',
+  templateUrl: './user.component.html',
+  styleUrls: ['./user.component.css']
 })
-export class TestComponent implements OnInit{
+export class UserComponent {
 
   listUsers: UserInterface[] = [];
   userDetail: UserInterface | undefined;
@@ -48,6 +45,7 @@ export class TestComponent implements OnInit{
   }
 
   onSubmit() {
+    window.location.reload();
     if (this.form.valid) {
       const formattedBirth = this.datePipe.transform(this.form.value.birth, 'dd/MM/yyyy');
 
@@ -67,7 +65,7 @@ export class TestComponent implements OnInit{
       };
 
       this.service.addUser(user).subscribe(response => {
-        this.getUser();
+
         this.form.reset();
       });
     } else {
@@ -78,12 +76,11 @@ export class TestComponent implements OnInit{
 
   delete(id: number, index: number) {
     this.service.deleteUser(id).subscribe(resultatDelete => {
-        this.listUsers.splice(index,1);
-        console.log(this.listUsers);
-  });
+      this.listUsers.splice(index,1);
+      console.log(this.listUsers);
+    });
 
   }
 
 
 }
-
